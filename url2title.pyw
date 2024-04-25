@@ -3,7 +3,7 @@ import pyperclip
 import requests
 from bs4 import BeautifulSoup
 
-DEBUG = True #True
+DEBUG = False #True
 TITLE = "url2title.py"
 MYURL = "https://daisuke20240310.hatenablog.com"
 
