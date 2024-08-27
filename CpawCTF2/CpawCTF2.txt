@@ -1,0 +1,141 @@
+### Webカテゴリ
+
+#### Fragile
+
+Fragile（壊れやすい、弱い、もろい、割れやすい）を選択すると、問題のウェブサイトのリンクと、答えを提出するフォームがありました。150ポイントなので、100ポイントよりは難しそうです。
+
+問題のウェブサイトのリンクをクリックすると、シンプルなフォームで、テキストを入力して submit するだけの画面になりました。
+
+フォームに適当な文字列（とりあえず、`<script>alert("aa")</script>` を入力してみた）を入力すると、それが表示されました。
+
+これ以上の情報はとりあえずは無さそうです。なかなか難しそうです。
+
+壊れやすいというタイトルということは、壊すような攻撃方法が必要なんでしょうか（笑）。
+
+### Networkカテゴリ
+
+#### prank
+
+先頭の prank という問題を見てみます。zipファイルと、ヒント？の pcapファイルが提供されています。100ポイントの問題です。先ほどの Fragile よりは、やさしそうな印象です。
+
+
+zipファイルはパスワード付きで開けませんでした。pcapファイルにヒントがあるのかもしれません。
+
+pcapファイルを Wireshark で開いてみると、Telnet の通信データのようです。
+
+pcapファイルの Telnet のところを右クリックして、Follow → TCP Stream をクリックすると、Telnet のログが見れる。
+
+ZIPファイルのパスワードが分かる(dosukoijojo2)ので、解凍する。
+
+Telnet で何をやってるのか見てみると、最初に大量のファイルがあって、少しずつリネームしていっているようだ。
+
+初期の flag.txt が怪しい。それは、666666 というファイル名に変わっている。
+
+このファイルを開けると、「What is the first president in the United States (10 letters)」と書かれてた。
+
+答えは10文字なので、「Washington」。
+
+※2024/8/25：初クリア
+
+あ、解けた。
+
+やりました！とりあえず、最初の目標の100ポイントをゲットです！
+
+#### HTTPS introduction
+
+もう1つの 100ポイントの問題の HTTPS introduction を見てみます。pcapファイルと、key というリンクをクリックすると、RSA の秘密鍵が表示されました。
+
+<figure class="figure-image figure-image-fotolife" title="HTTPS introductionの問題">[f:id:daisuke20240310:20240825192054p:plain:alt=HTTPS introductionの問題]<figcaption>HTTPS introductionの問題</figcaption></figure>
+
+こちらも 2ファイルが提供されていることから、少しはやさしそうな問題の印象です。
+
+pcapファイルを Wireshark で開く。SSL(TLS)通信のようなので、秘密鍵で復号してみる。
+
+Edit → Preferences... → Protocols → TLS をクリック。RSA keys list の Edit...をクリックして、＋ボタンを押して、鍵ファイルを設定 (他は空欄のまま)
+
+OK を押すと、元のウィンドウに戻って、一部が復号できていた。200 OK のところを見ると、Flag があった。
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>welcome</title>
+</head>
+<body>
+  We need private key!!!<br>
+  The flag is Cpaw{thx_Rivest_Shamir_Adleman}<br>
+</body>
+</html>
+
+
+### Cryptoカテゴリ
+
+Cryptoカテゴリは、脆弱性のある暗号の解読を行ったり、どのアルゴリズムで暗号化してるかを調べる問題などがあります。
+
+Cryptoカテゴリには、100ポイントの問題が2つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Cryptoカテゴリ">[f:id:daisuke20240310:20240825193344p:plain:alt=Cryptoカテゴリ]<figcaption>Cryptoカテゴリ</figcaption></figure>
+
+### Reverseカテゴリ
+
+Reverseカテゴリは、実行ファイルを解析したり、デバッガを使って、フラグを探す問題です。
+
+Reverseカテゴリには、100ポイントの問題が1つと、200ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Reverseカテゴリ">[f:id:daisuke20240310:20240825193425p:plain:alt=Reverseカテゴリ]<figcaption>Reverseカテゴリ</figcaption></figure>
+
+#### Exec me revenge
+
+Exec me revenge という問題です。実行ファイル？が1つ提供されています。
+
+<figure class="figure-image figure-image-fotolife" title="Exec me revengeの問題">[f:id:daisuke20240310:20240825200236p:plain:alt=Exec me revengeの問題]<figcaption>Exec me revengeの問題</figcaption></figure>
+
+概要を調べてみました。実行すると、セグメンテーションフォールトになりました。あと、フラグを出力してそうな文字列がありました。
+
+```sh
+$ file exec_me_revenge_4ba9b20108e56b8d77d8a2dd091c55c6
+exec_me_revenge_4ba9b20108e56b8d77d8a2dd091c55c6: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, for GNU/Linux 2.6.32, BuildID[sha1]=27b306d8607f80c9534a01d061d5fac21c157c4e, stripped
+
+$ strings exec_me_revenge_4ba9b20108e56b8d77d8a2dd091c55c6 | grep -i cpaw
+cpaw{%s}
+
+$ ./exec_me_revenge_4ba9b20108e56b8d77d8a2dd091c55c6
+Segmentation fault
+```
+
+とりあえず、Ghidra で逆コンパイルしてソースを眺めていく感じでしょうか。stripped（シンボル削除）されてるので、なかなか手ごわそうです。Ghidra で逆コンパイルしたソースは 21万行以上ありました。まともには見れません。
+
+タイトルが Exec me revenge なので、セグフォが出ないようにすればいいのかもしれないですね、それなら VSCode でデバッガで見てもいいかもです。
+
+### Pwnカテゴリ
+
+Pwnカテゴリは、プログラムの脆弱性を攻撃してフラグを取る問題です。総合的な知識が求められる場合が多いようです。
+
+Pwnカテゴリには、100ポイントの問題が1つと、250ポイントの問題が1つ、300ポイントの問題が2つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Pwnカテゴリ">[f:id:daisuke20240310:20240825193513p:plain:alt=Pwnカテゴリ]<figcaption>Pwnカテゴリ</figcaption></figure>
+
+### Forensicカテゴリ
+
+Forensicカテゴリは、様々なデータの中に隠されているフラグを探し出す問題です。
+
+Forensicカテゴリには、200ポイントの問題が1つ、300ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Forensicカテゴリ">[f:id:daisuke20240310:20240825193718p:plain:alt=Forensicカテゴリ]<figcaption>Forensicカテゴリ</figcaption></figure>
+
+### Stegoカテゴリ
+
+Stegoカテゴリは、Steganography のことで、音声や画像データに隠されたフラグを探し出す問題です。
+
+Stegoカテゴリには、100ポイントの問題が1つ、200ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Stegoカテゴリ">[f:id:daisuke20240310:20240825193834p:plain:alt=Stegoカテゴリ]<figcaption>Stegoカテゴリ</figcaption></figure>
+
+### Miscカテゴリ
+
+Miscカテゴリは、分類できない、その他という意味のカテゴリです。
+
+Miscカテゴリには、100ポイントの問題が2つ、150ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Miscカテゴリ">[f:id:daisuke20240310:20240825193854p:plain:alt=Miscカテゴリ]<figcaption>Miscカテゴリ</figcaption></figure>
+
