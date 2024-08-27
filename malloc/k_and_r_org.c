@@ -92,13 +92,13 @@ void myfree(void *ap) {
     if (p >= p->s.ptr && (bp > p || bp < p->s.ptr))
       break; /* freed block at start or end of arena */
   
-  if (bp + bp->s.size == p->s.ptr) { /* 右隣と連結可能なら連結する */
+  if (bp + bp->s.size == p->s.ptr) { /* 右隣の空きと連結可能なら連結する */
     bp->s.size += p->s.ptr->s.size;
     bp->s.ptr = p->s.ptr->s.ptr;
   } else
       bp->s.ptr = p->s.ptr;
   
-  if (p + p->s.size == bp) { /* 左隣と連結可能なら連結する */
+  if (p + p->s.size == bp) { /* 左隣の空きと連結可能なら連結する */
     p->s.size += bp->s.size;
     p->s.ptr = bp->s.ptr;
   } else
