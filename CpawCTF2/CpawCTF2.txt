@@ -1,59 +1,59 @@
-### Web�J�e�S��
+### Webカテゴリ
 
 #### Fragile
 
-Fragile�i���₷���A�ア�A���낢�A����₷���j��I������ƁA���̃E�F�u�T�C�g�̃����N�ƁA�������o����t�H�[��������܂����B150�|�C���g�Ȃ̂ŁA100�|�C���g���͓�����ł��B
+Fragile（壊れやすい、弱い、もろい、割れやすい）を選択すると、問題のウェブサイトのリンクと、答えを提出するフォームがありました。150ポイントなので、100ポイントよりは難しそうです。
 
-���̃E�F�u�T�C�g�̃����N���N���b�N����ƁA�V���v���ȃt�H�[���ŁA�e�L�X�g����͂��� submit ���邾���̉�ʂɂȂ�܂����B
+問題のウェブサイトのリンクをクリックすると、シンプルなフォームで、テキストを入力して submit するだけの画面になりました。
 
-�t�H�[���ɓK���ȕ�����i�Ƃ肠�����A`<script>alert("aa")</script>` ����͂��Ă݂��j����͂���ƁA���ꂪ�\������܂����B
+フォームに適当な文字列（とりあえず、`<script>alert("aa")</script>` を入力してみた）を入力すると、それが表示されました。
 
-����ȏ�̏��͂Ƃ肠�����͖��������ł��B�Ȃ��Ȃ�������ł��B
+これ以上の情報はとりあえずは無さそうです。なかなか難しそうです。
 
-���₷���Ƃ����^�C�g���Ƃ������Ƃ́A�󂷂悤�ȍU�����@���K�v�Ȃ�ł��傤���i�΁j�B
+壊れやすいというタイトルということは、壊すような攻撃方法が必要なんでしょうか（笑）。
 
-### Network�J�e�S��
+### Networkカテゴリ
 
 #### prank
 
-�擪�� prank �Ƃ����������Ă݂܂��Bzip�t�@�C���ƁA�q���g�H�� pcap�t�@�C�����񋟂���Ă��܂��B100�|�C���g�̖��ł��B��قǂ� Fragile ���́A�₳�������Ȉ�ۂł��B
+先頭の prank という問題を見てみます。zipファイルと、ヒント？の pcapファイルが提供されています。100ポイントの問題です。先ほどの Fragile よりは、やさしそうな印象です。
 
 
-zip�t�@�C���̓p�X���[�h�t���ŊJ���܂���ł����Bpcap�t�@�C���Ƀq���g������̂�������܂���B
+zipファイルはパスワード付きで開けませんでした。pcapファイルにヒントがあるのかもしれません。
 
-pcap�t�@�C���� Wireshark �ŊJ���Ă݂�ƁATelnet �̒ʐM�f�[�^�̂悤�ł��B
+pcapファイルを Wireshark で開いてみると、Telnet の通信データのようです。
 
-pcap�t�@�C���� Telnet �̂Ƃ�����E�N���b�N���āAFollow �� TCP Stream ���N���b�N����ƁATelnet �̃��O�������B
+pcapファイルの Telnet のところを右クリックして、Follow → TCP Stream をクリックすると、Telnet のログが見れる。
 
-ZIP�t�@�C���̃p�X���[�h��������(dosukoijojo2)�̂ŁA�𓀂���B
+ZIPファイルのパスワードが分かる(dosukoijojo2)ので、解凍する。
 
-Telnet �ŉ�������Ă�̂����Ă݂�ƁA�ŏ��ɑ�ʂ̃t�@�C���������āA���������l�[�����Ă����Ă���悤���B
+Telnet で何をやってるのか見てみると、最初に大量のファイルがあって、少しずつリネームしていっているようだ。
 
-������ flag.txt ���������B����́A666666 �Ƃ����t�@�C�����ɕς���Ă���B
+初期の flag.txt が怪しい。それは、666666 というファイル名に変わっている。
 
-���̃t�@�C�����J����ƁA�uWhat is the first president in the United States (10 letters)�v�Ə�����Ă��B
+このファイルを開けると、「What is the first president in the United States (10 letters)」と書かれてた。
 
-������10�����Ȃ̂ŁA�uWashington�v�B
+答えは10文字なので、「Washington」。
 
-��2024/8/25�F���N���A
+※2024/8/25：初クリア
 
-���A�������B
+あ、解けた。
 
-���܂����I�Ƃ肠�����A�ŏ��̖ڕW��100�|�C���g���Q�b�g�ł��I
+やりました！とりあえず、最初の目標の100ポイントをゲットです！
 
 #### HTTPS introduction
 
-����1�� 100�|�C���g�̖��� HTTPS introduction �����Ă݂܂��Bpcap�t�@�C���ƁAkey �Ƃ��������N���N���b�N����ƁARSA �̔閧�����\������܂����B
+もう1つの 100ポイントの問題の HTTPS introduction を見てみます。pcapファイルと、key というリンクをクリックすると、RSA の秘密鍵が表示されました。
 
-<figure class="figure-image figure-image-fotolife" title="HTTPS introduction�̖��">[f:id:daisuke20240310:20240825192054p:plain:alt=HTTPS introduction�̖��]<figcaption>HTTPS introduction�̖��</figcaption></figure>
+<figure class="figure-image figure-image-fotolife" title="HTTPS introductionの問題">[f:id:daisuke20240310:20240825192054p:plain:alt=HTTPS introductionの問題]<figcaption>HTTPS introductionの問題</figcaption></figure>
 
-������� 2�t�@�C�����񋟂���Ă��邱�Ƃ���A�����͂₳�������Ȗ��̈�ۂł��B
+こちらも 2ファイルが提供されていることから、少しはやさしそうな問題の印象です。
 
-pcap�t�@�C���� Wireshark �ŊJ���BSSL(TLS)�ʐM�̂悤�Ȃ̂ŁA�閧���ŕ������Ă݂�B
+pcapファイルを Wireshark で開く。SSL(TLS)通信のようなので、秘密鍵で復号してみる。
 
-Edit �� Preferences... �� Protocols �� TLS ���N���b�N�BRSA keys list �� Edit...���N���b�N���āA�{�{�^���������āA���t�@�C����ݒ� (���͋󗓂̂܂�)
+Edit → Preferences... → Protocols → TLS をクリック。RSA keys list の Edit...をクリックして、＋ボタンを押して、鍵ファイルを設定 (他は空欄のまま)
 
-OK �������ƁA���̃E�B���h�E�ɖ߂��āA�ꕔ�������ł��Ă����B200 OK �̂Ƃ��������ƁAFlag ���������B
+OK を押すと、元のウィンドウに戻って、一部が復号できていた。200 OK のところを見ると、Flag があった。
 
 <!doctype html>
 <html>
@@ -68,29 +68,29 @@ OK �������ƁA���̃E�B���h�E�ɖ߂��āA�ꕔ�������ł��Ă����B200 OK �̂Ƃ��������
 </html>
 
 
-### Crypto�J�e�S��
+### Cryptoカテゴリ
 
-Crypto�J�e�S���́A�Ǝ㐫�̂���Í��̉�ǂ��s������A�ǂ̃A���S���Y���ňÍ������Ă邩�𒲂ׂ���Ȃǂ�����܂��B
+Cryptoカテゴリは、脆弱性のある暗号の解読を行ったり、どのアルゴリズムで暗号化してるかを調べる問題などがあります。
 
-Crypto�J�e�S���ɂ́A100�|�C���g�̖�肪2����܂����B
+Cryptoカテゴリには、100ポイントの問題が2つありました。
 
-<figure class="figure-image figure-image-fotolife" title="Crypto�J�e�S��">[f:id:daisuke20240310:20240825193344p:plain:alt=Crypto�J�e�S��]<figcaption>Crypto�J�e�S��</figcaption></figure>
+<figure class="figure-image figure-image-fotolife" title="Cryptoカテゴリ">[f:id:daisuke20240310:20240825193344p:plain:alt=Cryptoカテゴリ]<figcaption>Cryptoカテゴリ</figcaption></figure>
 
-### Reverse�J�e�S��
+### Reverseカテゴリ
 
-Reverse�J�e�S���́A���s�t�@�C������͂�����A�f�o�b�K���g���āA�t���O��T�����ł��B
+Reverseカテゴリは、実行ファイルを解析したり、デバッガを使って、フラグを探す問題です。
 
-Reverse�J�e�S���ɂ́A100�|�C���g�̖�肪1�ƁA200�|�C���g�̖�肪1����܂����B
+Reverseカテゴリには、100ポイントの問題が1つと、200ポイントの問題が1つありました。
 
-<figure class="figure-image figure-image-fotolife" title="Reverse�J�e�S��">[f:id:daisuke20240310:20240825193425p:plain:alt=Reverse�J�e�S��]<figcaption>Reverse�J�e�S��</figcaption></figure>
+<figure class="figure-image figure-image-fotolife" title="Reverseカテゴリ">[f:id:daisuke20240310:20240825193425p:plain:alt=Reverseカテゴリ]<figcaption>Reverseカテゴリ</figcaption></figure>
 
 #### Exec me revenge
 
-Exec me revenge �Ƃ������ł��B���s�t�@�C���H��1�񋟂���Ă��܂��B
+Exec me revenge という問題です。実行ファイル？が1つ提供されています。
 
-<figure class="figure-image figure-image-fotolife" title="Exec me revenge�̖��">[f:id:daisuke20240310:20240825200236p:plain:alt=Exec me revenge�̖��]<figcaption>Exec me revenge�̖��</figcaption></figure>
+<figure class="figure-image figure-image-fotolife" title="Exec me revengeの問題">[f:id:daisuke20240310:20240825200236p:plain:alt=Exec me revengeの問題]<figcaption>Exec me revengeの問題</figcaption></figure>
 
-�T�v�𒲂ׂĂ݂܂����B���s����ƁA�Z�O�����e�[�V�����t�H�[���g�ɂȂ�܂����B���ƁA�t���O���o�͂��Ă����ȕ����񂪂���܂����B
+概要を調べてみました。実行すると、セグメンテーションフォールトになりました。あと、フラグを出力してそうな文字列がありました。
 
 ```sh
 $ file exec_me_revenge_4ba9b20108e56b8d77d8a2dd091c55c6
@@ -103,39 +103,62 @@ $ ./exec_me_revenge_4ba9b20108e56b8d77d8a2dd091c55c6
 Segmentation fault
 ```
 
-�Ƃ肠�����AGhidra �ŋt�R���p�C�����ă\�[�X�𒭂߂Ă��������ł��傤���Bstripped�i�V���{���폜�j����Ă�̂ŁA�Ȃ��Ȃ��育�킻���ł��BGhidra �ŋt�R���p�C�������\�[�X�� 21���s�ȏ゠��܂����B�܂Ƃ��ɂ͌���܂���B
+とりあえず、Ghidra で逆コンパイルしてソースを眺めていく感じでしょうか。stripped（シンボル削除）されてるので、なかなか手ごわそうです。Ghidra で逆コンパイルしたソースは 21万行以上ありました。まともには見れません。
 
-�^�C�g���� Exec me revenge �Ȃ̂ŁA�Z�O�t�H���o�Ȃ��悤�ɂ���΂����̂�������Ȃ��ł��ˁA����Ȃ� VSCode �Ńf�o�b�K�Ō��Ă����������ł��B
+タイトルが Exec me revenge なので、セグフォが出ないようにすればいいのかもしれないですね、それなら VSCode でデバッガで見てもいいかもです。
 
-### Pwn�J�e�S��
+GDB で動かそうとしても、すぐにセグフォになったので、エントリポイントを探そうと、readelf -h すると、エントリポイントのアドレスが 0 であることに気づいた。
 
-Pwn�J�e�S���́A�v���O�����̐Ǝ㐫���U�����ăt���O�������ł��B�����I�Ȓm�������߂���ꍇ�������悤�ł��B
+testセクションのアドレスはすぐに分かるが、エントリポイントのアドレスはどうやったら分かる？
 
-Pwn�J�e�S���ɂ́A100�|�C���g�̖�肪1�ƁA250�|�C���g�̖�肪1�A300�|�C���g�̖�肪2����܂����B
+以下の記事で作った、hello_world.out を、この問題の形式に合わせていこうと考えた。
 
-<figure class="figure-image figure-image-fotolife" title="Pwn�J�e�S��">[f:id:daisuke20240310:20240825193513p:plain:alt=Pwn�J�e�S��]<figcaption>Pwn�J�e�S��</figcaption></figure>
+https://daisuke20240310.hatenablog.com/entry/x86-64
 
-### Forensic�J�e�S��
+まず、よく見ると、staticリンクだったので、-static でコンパイルして、strip した。 → hello_world_static_strip.out
 
-Forensic�J�e�S���́A�l�X�ȃf�[�^�̒��ɉB����Ă���t���O��T���o�����ł��B
+次に、hello_world_static_strip.out のエントリポイントをよく見ると、xor %ebp,%ebp から始まっているようだった。
 
-Forensic�J�e�S���ɂ́A200�|�C���g�̖�肪1�A300�|�C���g�̖�肪1����܂����B
+exec_me_revenge も同じじゃないかと考えて、Ghidra で xor %ebp,%ebp を検索した。
 
-<figure class="figure-image figure-image-fotolife" title="Forensic�J�e�S��">[f:id:daisuke20240310:20240825193718p:plain:alt=Forensic�J�e�S��]<figcaption>Forensic�J�e�S��</figcaption></figure>
+2個目の xor %ebp,%ebp を見たところで、逆コンパイルを見ると、hello_world_static_strip.out のエントリポイントとそっくりだった。
 
-### Stego�J�e�S��
+ここ(0x4009d0)をエントリポイントと考えて、バイナリエディタで、exec_me_revenge のエントリポイントアドレスを書き換えた。
 
-Stego�J�e�S���́ASteganography �̂��ƂŁA������摜�f�[�^�ɉB���ꂽ�t���O��T���o�����ł��B
+実行してみると、セグフォは起きず、フラグが表示された
 
-Stego�J�e�S���ɂ́A100�|�C���g�̖�肪1�A200�|�C���g�̖�肪1����܂����B
+$ ./exec_me_revenge_ep 
+cpaw{b7e89d55aa08a289aa48277386e6ff1d}
 
-<figure class="figure-image figure-image-fotolife" title="Stego�J�e�S��">[f:id:daisuke20240310:20240825193834p:plain:alt=Stego�J�e�S��]<figcaption>Stego�J�e�S��</figcaption></figure>
+### Pwnカテゴリ
 
-### Misc�J�e�S��
+Pwnカテゴリは、プログラムの脆弱性を攻撃してフラグを取る問題です。総合的な知識が求められる場合が多いようです。
 
-Misc�J�e�S���́A���ނł��Ȃ��A���̑��Ƃ����Ӗ��̃J�e�S���ł��B
+Pwnカテゴリには、100ポイントの問題が1つと、250ポイントの問題が1つ、300ポイントの問題が2つありました。
 
-Misc�J�e�S���ɂ́A100�|�C���g�̖�肪2�A150�|�C���g�̖�肪1����܂����B
+<figure class="figure-image figure-image-fotolife" title="Pwnカテゴリ">[f:id:daisuke20240310:20240825193513p:plain:alt=Pwnカテゴリ]<figcaption>Pwnカテゴリ</figcaption></figure>
 
-<figure class="figure-image figure-image-fotolife" title="Misc�J�e�S��">[f:id:daisuke20240310:20240825193854p:plain:alt=Misc�J�e�S��]<figcaption>Misc�J�e�S��</figcaption></figure>
+### Forensicカテゴリ
+
+Forensicカテゴリは、様々なデータの中に隠されているフラグを探し出す問題です。
+
+Forensicカテゴリには、200ポイントの問題が1つ、300ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Forensicカテゴリ">[f:id:daisuke20240310:20240825193718p:plain:alt=Forensicカテゴリ]<figcaption>Forensicカテゴリ</figcaption></figure>
+
+### Stegoカテゴリ
+
+Stegoカテゴリは、Steganography のことで、音声や画像データに隠されたフラグを探し出す問題です。
+
+Stegoカテゴリには、100ポイントの問題が1つ、200ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Stegoカテゴリ">[f:id:daisuke20240310:20240825193834p:plain:alt=Stegoカテゴリ]<figcaption>Stegoカテゴリ</figcaption></figure>
+
+### Miscカテゴリ
+
+Miscカテゴリは、分類できない、その他という意味のカテゴリです。
+
+Miscカテゴリには、100ポイントの問題が2つ、150ポイントの問題が1つありました。
+
+<figure class="figure-image figure-image-fotolife" title="Miscカテゴリ">[f:id:daisuke20240310:20240825193854p:plain:alt=Miscカテゴリ]<figcaption>Miscカテゴリ</figcaption></figure>
 
