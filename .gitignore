@@ -8,6 +8,7 @@
 *.s
 *.so
 *.log
+*.map
 *.tmp
 *.cmd
 *.mod.c
