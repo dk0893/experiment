@@ -1,5 +1,6 @@
 import os, sys
 import argparse
+import logging
 
 def memo():
     
@@ -28,6 +29,9 @@ if __name__ == '__main__':
     args = parse_args()
     print( f"args={args}" )
     
-    if args.ope is None:
-        
-        main( args )
+    if args.debug:
+        logging.basicConfig( level=logging.DEBUG, filename=f"{argv[0]}.log" )
+    else:
+        logging.basicConfig( level=logging.INFO )
+    
+    main( args )
