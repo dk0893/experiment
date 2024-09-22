@@ -1,0 +1,43 @@
+*.o
+*.lo
+*.d
+*.p
+*.out
+*.ko
+*.a
+*.s
+*.so
+*.log
+*.tmp
+*.cmd
+*.mod.c
+*.gcda
+*.gcno
+*.info
+*.000
+Module.symvers
+modules.order
+*.zip
+
+# フォルダ
+.tmp_versions/
+lcov.html
+doxygen
+Debug/
+# カレントディレクトリのみ無視
+tags
+
+# ipython
+.ipynb_checkpoints
+__pycache__
+
+peda-session-*
+
+# 以下、個別に設定
+CpawCTF/html/
+CpawCTF/tenpu/
+
+
+
+
+
