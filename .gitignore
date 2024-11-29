@@ -33,12 +33,16 @@ tags
 __pycache__
 
 peda-session-*
+.gdb_history
 
 # 以下、個別に設定
-CpawCTF/html/
-CpawCTF/tenpu/
+CpawCTF/
+CpawCTF2/
+picoCTF/
+ksnctf/
+setodaNoteCTF/
+questions_for_CTF/
+securitycontest_challengebook/
 
-
-
-
-
+python/tmp.py
+python/baby_stack/

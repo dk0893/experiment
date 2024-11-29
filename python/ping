@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+import os
+
+dpath = '/root/'
+
+files = os.listdir( dpath )
+print( files )
