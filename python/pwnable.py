@@ -110,6 +110,8 @@ def main( args ):
     
     elif args.ope == "shellcode":
         
+        # $ socat tcp-listen:9999,reuseaddr,fork, EXEC:"./shellcode"
+        
         # ★0x00 が含まれているのに、なぜうまくいったのか？
         # $ python pwnable.py --ope shellcode --debug
         
