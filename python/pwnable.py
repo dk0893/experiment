@@ -76,6 +76,9 @@ def main( args ):
     
     elif args.ope == "adrs_leak":
         
+        # セキュリティコンテストチャレンジブック
+        # $ cd ~/svn/experiment/securitycontest_challengebook/book4b_pwn/step5/aslr
+        # $ socat TCP-LISTEN:4000,reuseaddr,fork EXEC:./bof4
         # $ python ../../../../python/pwnable.py --ope adrs_leak
         
         proc = prologue_remote( '127.0.0.1', 4000 )
@@ -110,9 +113,10 @@ def main( args ):
     
     elif args.ope == "shellcode":
         
+        # (GitHubにアップ済み)
         # $ socat tcp-listen:9999,reuseaddr,fork, EXEC:"./shellcode"
         
-        # ★0x00 が含まれているのに、なぜうまくいったのか？
+        # 0x00 が含まれているのに、なぜうまくいったのか？ → scanf関数で"[^\n]"としていたため
         # $ python pwnable.py --ope shellcode --debug
         
         adrs, port = '127.0.0.1', 9999
@@ -163,6 +167,7 @@ def main( args ):
     
     elif args.ope == "format-string-3":
         
+        # (GitHubにアップ済み)
         # $ socat tcp-listen:4000,reuseaddr,fork, EXEC:"./format-string-3"
         # $ python pwnable.py --ope format-string-3 --debug
         

@@ -39,13 +39,25 @@ def listdir( dpath ):
     files = os.listdir( dpath )
     print( files )
 
-
-
 # unzip
 def unzip( fpath ):
     
     shutil.unpack_archive( fpath )
     os.remove( fpath )
+
+### encode と decode
+
+# 
+# >>> ee = "バイナリ解析".encode()
+# >>> ee
+# b'\xe3\x83\x90\xe3\x82\xa4\xe3\x83\x8a\xe3\x83\xaa\xe8\xa7\xa3\xe6\x9e\x90'
+# >>> ee.hex()
+# 'e38390e382a4e3838ae383aae8a7a3e69e90'
+# >>> ee.hex(" ")
+# 'e3 83 90 e3 82 a4 e3 83 8a e3 83 aa e8 a7 a3 e6 9e 90'
+# >>> ee.decode()
+# 'バイナリ解析'
+# 
 
 def str2int( ss, offset=0, num_disable=False ):
     
