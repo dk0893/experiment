@@ -1,0 +1,231 @@
+// 既定値を上書きするには、このファイル内にキー バインドを挿入しますauto[]
+[
+    {
+        "key": "ctrl+alt+t",
+        "command": "workbench.action.showAllSymbols"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "actions.find"
+    },
+    // カーソルを右に移動
+    {
+        "key": "ctrl+f",
+        "command": "-actions.find"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "cursorRight",
+        "when": "textInputFocus"
+    },
+    // カーソルを左に移動
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "cursorLeft",
+        "when": "textInputFocus"
+    },
+    // カーソルを上に移動
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "cursorUp",
+        "when": "textInputFocus"
+    },
+    // 画面を上に移動
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "scrollLineUp",
+        "when": "textInputFocus"
+    },
+    // カーソルを下に移動
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "cursorDown",
+        "when": "textInputFocus"
+    },
+    // 画面を下に移動
+    {
+        "key": "ctrl+shift+n",
+        "command": "-workbench.action.newWindow"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "scrollLineDown",
+        "when": "textInputFocus"
+    },
+    // カーソルを行頭に移動
+    {
+        "key": "ctrl+a",
+        "command": "-editor.action.selectAll"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "cursorHome",
+        "when": "textInputFocus"
+    },
+    // カーソルを行末に移動
+    {
+        "key": "ctrl+e",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "cursorEnd",
+        "when": "textInputFocus"
+    },
+    // カーソルを1ページ上に移動
+    {
+        "key": "ctrl+u",
+        "command": "-cursorUndo",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "cursorPageUp",
+        "when": "textInputFocus"
+    },
+    // カーソルを1ページ下に移動
+    {
+        "key": "ctrl+m",
+        "command": "-editor.action.toggleTabFocusMode"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "cursorPageDown",
+        "when": "textInputFocus"
+    },
+    // カーソルをファイル先頭に移動
+    {
+        "key": "ctrl+oem_4",
+        "command": "-editor.action.outdentLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+oem_4",
+        "command": "cursorTop",
+        "when": "textInputFocus"
+    },
+    // カーソルをファイル末尾に移動
+    {
+        "key": "ctrl+oem_6",
+        "command": "-editor.action.indentLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+   {
+        "key": "ctrl+oem_6",
+        "command": "cursorBottom",
+        "when": "textInputFocus"
+    },
+    // すべて選択
+    {
+        "key": "ctrl+oem_7",
+        "command": "editor.action.selectAll"
+    },
+    // 1行下を選択
+    {
+        "key": "ctrl+oem_3",
+        "command": "-workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+oem_3",
+        "command": "cursorDownSelect",
+        "when": "textInputFocus"
+    },
+    // 1行上を選択
+    {
+        "key": "ctrl+i",
+        "command": "cursorUpSelect",
+        "when": "textInputFocus"
+    },
+    // 右を選択
+    {
+        "key": "ctrl+k",
+        "command": "cursorRightSelect",
+        "when": "textInputFocus"
+    },
+    // 左を選択
+    {
+        "key": "ctrl+j",
+        "command": "-workbench.action.togglePanel"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "cursorLeftSelect",
+        "when": "textInputFocus"
+    },
+    // 右を削除
+    {
+        "key": "ctrl+d",
+        "command": "-editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "deleteRight",
+        "when": "textInputFocus"
+    },
+    // 現在の行を削除
+    {
+        "key": "ctrl+l",
+        "command": "-expandLineSelection",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    // フォントサイズのリセット
+    {
+        "key": "ctrl+oem_5",
+        "command": "-workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+oem_5",
+        "command": "editor.action.fontZoomReset"
+    },
+    // 画面分割 (下) → ブレークポイント(F9)は Shift + F9 に移動
+    {
+        "key": "shift+f9",
+        "command": "editor.debug.action.toggleBreakpoint",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "f9",
+        "command": "-editor.debug.action.toggleBreakpoint",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "f9",
+        "command": "workbench.action.splitEditorDown"
+    },
+    // 画面分割 (右)
+    {
+        "key": "ctrl+f9",
+        "command": "workbench.action.splitEditorRight"
+    },
+]

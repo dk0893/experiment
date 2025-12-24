@@ -1,0 +1,33 @@
+{
+    "remote.SSH.remotePlatform": {
+        "VirtualBox": "linux",
+        "RaspberryPi4": "linux",
+        "ParrotOS": "linux"
+    },
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+    "window.zoomLevel": -1,
+    "code-eol.color": "#555",
+    "editor.trimAutoWhitespace": false,
+    "editor.mouseWheelZoom": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "plantuml.exportOutDir": ".",
+    "plantuml.exportSubFolder": false,
+    "cmake.configureOnOpen": true,
+    "plantuml.commandArgs": [
+        "-Xmx2g",
+        "-DPLANTUML_LIMIT_SIZE=16384",
+    ],
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.colorTheme": "Default Light+",
+    "git.openRepositoryInParentFolders": "never",
+    "python.defaultInterpreterPath": "C:\\Users\\dk089\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+}
